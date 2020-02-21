@@ -11,10 +11,16 @@ yargs.command({
           describe:'note title',
           demandOption:true,
           type:"string"
+      },
+      body:{
+          describe:"body of the note",
+          demandOption:true,
+          type:'string'
       }
   },
   handler: function(argv) {
     console.log(chalk.green.inverse.bold("Adding a new note : ",argv.title));
+    console.log(chalk.green.inverse("body of the note : ",argv.body));
   }
 });
 
