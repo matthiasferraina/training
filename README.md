@@ -1,3 +1,3 @@
 # training
 
-this repository holds all my trainings and experimentations
+this repository holds all my trainings and experimentations in different technos
