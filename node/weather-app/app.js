@@ -6,11 +6,11 @@ const address = process.argv[2];
 if (!address) {
     console.log("please enter an address");
 } else {
-    geocode(address, (err, res) => {
+    geocode(address, (err, { latitude, longitude }) => {
         if (err) {
             return console.log("Error :", err);
         }
-        forecast(res.latitude, res.longitude, (err, res) => {
+        forecast(latitude, longitude, (err, res) => {
             if (err) {
                 return console.log("Error :", err);
             }
