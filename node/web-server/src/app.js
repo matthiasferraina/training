@@ -40,21 +40,27 @@ app.get("/help", (req, res) => {
 });
 
 app.get("/help/*", (req, res) => {
-    res.render('404', {
+    res.render("404", {
         title: "404 not found",
-        errorMessage: 'Help article not found',
-        creator: "Matthias FERRAINA",
+        errorMessage: "Help article not found",
+        creator: "Matthias FERRAINA"
     });
 });
 app.get("/weather", (req, res) => {
-    res.send("weather page");
+    if (!req.query.address) {
+        return res.send({
+            error: "please provide an address"
+        });
+    }
+
+    res.send({ address: req.query.address });
 });
 
 app.get("*", (req, res) => {
-    res.render('404', {
+    res.render("404", {
         title: "404 not found",
-        errorMessage: 'Page not found',
-        creator: "Matthias FERRAINA",
+        errorMessage: "Page not found",
+        creator: "Matthias FERRAINA"
     });
 });
 
