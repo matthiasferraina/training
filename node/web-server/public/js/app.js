@@ -1,17 +1,21 @@
-const form = document.querySelector('form')
-const input = document.querySelector('input')
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const paragraphWeather = document.querySelector("#weather");
+const paragraphError = document.querySelector("#error");
 
-form.addEventListener('submit', (e) => {
+paragraphWeather.innerText = "";
+form.addEventListener("submit", e => {
     e.preventDefault();
 
+    paragraphWeather.textContent = "Loading...";
     fetch(`http://localhost:3000/weather?address=${input.value}`).then(res => {
         res.json().then(data => {
             if (data.error) {
-                return console.log(data.error);
+                paragraphWeather.textContent = "";
+                return (paragraphError.textContent = data.error);
             }
-
-            console.log(data);
+            paragraphWeather.textContent = `Pour la ville de ${data.location}, aujourd'hui il fera ${data.summary}, avec une température de ${data.temperature} °C et ${data.precipProbability} probabilité de pluie.`;
+            paragraphError.textContent = "";
         });
     });
-
-})
+});
